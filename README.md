@@ -12,7 +12,7 @@
 
 - React
 - JavaScript
--
+- TypeScript
 -
 
 ## Setup/Installation Requirements
@@ -40,3 +40,4 @@ Copyright (c) _2022_ _Viktoriia Zubarieva_
 
 2:40 pm - 5.00 pm - Brainstorming and plan my research
 5:30 pm - 6.00 pm - watched video "How to Connect Firebase With React Application"
+6:00 pm - 6.30 pm - created an account at firebase.google.com and create react app
