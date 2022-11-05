@@ -36,6 +36,7 @@ Copyright (c) _2022_ _Viktoriia Zubarieva_
 
 ## Research and planning Log
 
-November 04, 2022
+#### Friday , 11/04
 
-2:40 pm - 5.00 - Brainstorming and plan my research
+2:40 pm - 5.00 pm - Brainstorming and plan my research
+5:30 pm - 6.00 pm - watched video "How to Connect Firebase With React Application"

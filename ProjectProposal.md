@@ -30,6 +30,6 @@ I'm going to use React for user interface logic. Investigate Firebase and Google
 
 ## What additional tools, frameworks, libraries, APIs, or other resources will these additional features require?
 
-Firebase/Google cloud (I will start research) or another .Net/MySQL
+Firebase/Google cloud (I will start research) or .Net/MySQL
 
 ## Is there anything else you'd like your instructor to know?
