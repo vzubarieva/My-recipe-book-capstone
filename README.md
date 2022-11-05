@@ -8,6 +8,8 @@
 
 <!-- ![project-screenshot](src/img/diagram.png) -->
 
+website url https://my-recipe-book-e2c62.web.app/
+
 ## Technologies Used
 
 - React
@@ -23,6 +25,7 @@
 - Open in code editor (VS Code)
 - Install dependencies: $ npm install
 - Run Program $ npm run start ( It should open the server http://localhost:3000/ )
+-
 
 ## Known Bugs
 
@@ -38,6 +41,7 @@ Copyright (c) _2022_ _Viktoriia Zubarieva_
 
 #### Friday , 11/04
 
-2:40 pm - 5.00 pm - Brainstorming and plan my research
-5:30 pm - 6.00 pm - watched video "How to Connect Firebase With React Application"
-6:00 pm - 6.30 pm - created an account at firebase.google.com and create react app
+- 2:40 pm - 5.00 pm - Brainstorming and plan my research
+- 5:30 pm - 6.00 pm - watched video "How to Connect Firebase With React Application"
+- 6:00 pm - 6.30 pm - created an account at firebase.google.com and create react app
+- 6.30 pm - 7.15 pm - set up firebase connection and deployment
