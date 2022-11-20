@@ -8,15 +8,9 @@ interface INewRecipeFormProps {
 }
 
 function NewRecipeForm(props: INewRecipeFormProps) {
-  function handleNewRecipeFormSubmission(event) {
-    event.preventDefault();
+  function handleNewRecipeFormSubmission(recipe: IRecipe) {
     props.onNewRecipeCreation({
-      name: event.target.name.value,
-      ingredients: event.target.ingredients.value,
-      directions: event.target.directions.value,
-      prepTime: event.target.prepTime.value,
-      cookingTime: event.target.cookingTime.value,
-      comments: event.target.comments.value,
+      ...recipe,
       id: v4(),
     });
   }
@@ -24,7 +18,7 @@ function NewRecipeForm(props: INewRecipeFormProps) {
   return (
     <React.Fragment>
       <ReusableForm
-        formSubmissionHandler={handleNewRecipeFormSubmission}
+        onSubmit={handleNewRecipeFormSubmission}
         buttonText="Save"
       />
     </React.Fragment>

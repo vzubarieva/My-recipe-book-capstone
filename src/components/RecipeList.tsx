@@ -3,7 +3,7 @@ import Recipe from "./Recipe";
 import { IRecipe } from "../models/Recipe";
 
 interface IRecipeListProps {
-  onRecipeSelection: (recipe: IRecipe) => void;
+  onRecipeSelection: (id: string) => void;
   recipeList: Array<IRecipe>;
 }
 
@@ -14,23 +14,12 @@ function RecipeList(props: IRecipeListProps) {
       {props.recipeList.map((recipe) => (
         <Recipe
           whenRecipeClicked={props.onRecipeSelection}
-          name={recipe.name}
-          ingredients={recipe.ingredients}
-          directions={recipe.directions}
-          prepTime={recipe.prepTime}
-          cookingTime={recipe.cookingTime}
-          comments={recipe.comments}
-          id={recipe.id}
+          recipe={recipe}
           key={recipe.id}
         />
       ))}
     </React.Fragment>
   );
 }
-
-// TicketList.propTypes = {
-//   ticketList: PropTypes.array,
-//   onTicketSelection: PropTypes.func
-// };
 
 export default RecipeList;

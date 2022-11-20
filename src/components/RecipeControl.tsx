@@ -84,7 +84,7 @@ class RecipeControl extends React.Component<
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.editing) {
+    if (this.state.editing && this.state.selectedRecipe) {
       currentlyVisibleState = (
         <EditRecipeForm
           recipe={this.state.selectedRecipe}

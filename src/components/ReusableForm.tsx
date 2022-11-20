@@ -1,14 +1,28 @@
-import React from "react";
+import React, { FormEvent } from "react";
+import { IRecipe } from "../models/Recipe";
 
 interface IRecipeDetailProps {
-  formSubmissionHandler: (recipe: IRecipe) => void;
+  onSubmit: (recipe: IRecipe) => void;
   buttonText: string;
 }
 function ReusableForm(props: IRecipeDetailProps) {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = event.target as HTMLFormElement;
+    props.onSubmit({
+      name: formData.recipeName.value,
+      ingredients: formData.ingredients.value,
+      directions: formData.directions.value,
+      prepTime: formData.prepTime.value,
+      cookingTime: formData.cookingTime.value,
+      comments: formData.comments.value,
+      id: "",
+    });
+  };
   return (
     <React.Fragment>
-      <form onSubmit={props.formSubmissionHandler}>
-        <input type="text" name="name" placeholder="Name of the recipe" />
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="recipeName" placeholder="Name of the recipe" />
         <textarea name="ingredients" placeholder="Ingredients" />
         <textarea name="directions" placeholder="Directions" />
         <input type="number" name="prepTime" placeholder="Preparation time" />
@@ -19,10 +33,5 @@ function ReusableForm(props: IRecipeDetailProps) {
     </React.Fragment>
   );
 }
-
-// ReusableForm.propTypes = {
-//   formSubmissionHandler: PropTypes.func,
-//   buttonText: PropTypes.string
-// };
 
 export default ReusableForm;
