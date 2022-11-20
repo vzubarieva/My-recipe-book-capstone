@@ -18,6 +18,7 @@ function EditRecipeForm({ recipe, onEditRecipe }: IEditRecipeFormProps) {
   return (
     <React.Fragment>
       <ReusableForm
+        recipe={recipe}
         onSubmit={handleEditRecipeFormSubmission}
         buttonText="Update recipe"
       />
