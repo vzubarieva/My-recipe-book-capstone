@@ -6,7 +6,7 @@
 
 #### Description
 
-![project-screenshot](src/img/diagram.png)
+![project-screenshot](src/img/diagram1.png)
 
 website url https://my-recipe-book-e2c62.web.app/
 
@@ -52,8 +52,8 @@ Copyright (c) _2022_ _Viktoriia Zubarieva_
 
 #### Monday, 11/14
 
--7:00 - 9:00 pm - watched video tutorial Material UI
+- 7:00 - 9:00 pm - watched video tutorial Material UI
 
 #### Tuesday, 11/15
 
--7:30 - 9:00 pm - continue watching Material Ui tutorial
+- 7:30 - 9:00 pm - continue watching Material Ui tutorial
