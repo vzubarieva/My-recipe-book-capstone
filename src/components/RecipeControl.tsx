@@ -5,122 +5,94 @@ import EditRecipeForm from "./EditRecipeForm";
 import RecipeDetail from "./RecipeDetail";
 import { IRecipe } from "../models/Recipe";
 
-interface IRecipeControlProps {}
+const RecipeControl = () => {
+  const [formVisibleOnPage, setFormVisibleOnPage] = useState<boolean>(false);
+  const [mainRecipeList, setMainRecipeList] = useState<Array<IRecipe>>([]);
+  const [selectedRecipe, setSelectedRecipe] = useState<null | IRecipe>(null);
+  const [editing, setEditing] = useState<boolean>(false);
 
-interface IRecipeControlState {
-  formVisibleOnPage: boolean;
-  mainRecipeList: Array<IRecipe>;
-  selectedRecipe: null | IRecipe;
-  editing: boolean;
-}
-
-class RecipeControl extends React.Component<
-  IRecipeControlProps,
-  IRecipeControlState
-> {
-  constructor(props: IRecipeControlProps) {
-    super(props);
-    this.state = {
-      formVisibleOnPage: false,
-      mainRecipeList: [],
-      selectedRecipe: null,
-      editing: false,
-    };
-  }
-
-  handleClick = () => {
-    if (this.state.selectedRecipe != null) {
-      this.setState({
-        formVisibleOnPage: false,
-        selectedRecipe: null,
-        editing: false,
-      });
+  const handleClick = () => {
+    if (selectedRecipe != null) {
+      setFormVisibleOnPage(false);
+      setSelectedRecipe(null);
+      setEditing(false);
     } else {
-      this.setState((prevState) => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage,
-      }));
+      setFormVisibleOnPage(!formVisibleOnPage);
     }
   };
 
-  handleDeletingRecipe = (id: string) => {
-    const newMainRecipeList = this.state.mainRecipeList.filter(
+  const handleDeletingRecipe = (id: string) => {
+    const newMainRecipeList = mainRecipeList.filter(
       (recipe) => recipe.id !== id
     );
-    this.setState({
-      mainRecipeList: newMainRecipeList,
-      selectedRecipe: null,
-    });
+    setMainRecipeList(newMainRecipeList);
   };
 
-  handleEditClick = () => {
-    this.setState({ editing: true });
+  const handleEditClick = () => {
+    setEditing(true);
   };
 
-  handleEditingRecipeInList = (recipeToEdit: IRecipe) => {
-    const editedMainRecipeList = this.state.mainRecipeList
-      .filter((recipe) => recipe.id !== this.state.selectedRecipe?.id)
+  const handleEditingRecipeInList = (recipeToEdit: IRecipe) => {
+    const editedMainRecipeList = mainRecipeList
+      .filter((recipe) => recipe.id !== selectedRecipe?.id)
       .concat(recipeToEdit);
-
-    this.setState({
-      mainRecipeList: editedMainRecipeList,
-      editing: false,
-      selectedRecipe: null,
-    });
+    setMainRecipeList(editedMainRecipeList);
   };
 
-  handleAddingNewRecipeToList = (newRecipe: IRecipe) => {
-    const newMainRecipeList = this.state.mainRecipeList.concat(newRecipe);
-    this.setState({ mainRecipeList: newMainRecipeList });
-    this.setState({ formVisibleOnPage: false });
+  const handleAddingNewRecipeToList = (newRecipe: IRecipe) => {
+    const newMainRecipeList = mainRecipeList.concat(newRecipe);
+    setMainRecipeList(newMainRecipeList);
+    setFormVisibleOnPage(false);
   };
 
-  handleChangingSelectedRecipe = (id: string) => {
-    const selectedRecipe = this.state.mainRecipeList.filter(
+  const handleChangingSelectedRecipe = (id: string) => {
+    const selectedRecipe = mainRecipeList.filter(
       (recipe) => recipe.id === id
     )[0];
-    this.setState({ selectedRecipe: selectedRecipe });
+    setSelectedRecipe(selectedRecipe);
   };
 
-  render() {
-    let currentlyVisibleState = null;
-    let buttonText = null;
-    if (this.state.editing && this.state.selectedRecipe) {
-      currentlyVisibleState = (
-        <EditRecipeForm
-          recipe={this.state.selectedRecipe}
-          onEditRecipe={this.handleEditingRecipeInList}
-        />
-      );
-      buttonText = "Return to recipe List";
-    } else if (this.state.selectedRecipe != null) {
-      currentlyVisibleState = (
-        <RecipeDetail
-          recipe={this.state.selectedRecipe}
-          onClickingDelete={this.handleDeletingRecipe}
-          onClickingEdit={this.handleEditClick}
-        />
-      );
-      buttonText = "Return to recipe List";
-    } else if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = (
-        <NewRecipeForm onNewRecipeCreation={this.handleAddingNewRecipeToList} />
-      );
-      buttonText = "Return to recipe List";
-    } else {
-      currentlyVisibleState = (
-        <RecipeList
-          onRecipeSelection={this.handleChangingSelectedRecipe}
-          recipeList={this.state.mainRecipeList}
-        />
-      );
-      buttonText = "Add recipe";
-    }
-    return (
-      <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
-      </React.Fragment>
+  // render() {
+  let currentlyVisibleState = null;
+  let buttonText = null;
+
+  if (editing && selectedRecipe) {
+    currentlyVisibleState = (
+      <EditRecipeForm
+        recipe={selectedRecipe}
+        onEditRecipe={handleEditingRecipeInList}
+      />
     );
+    buttonText = "Return to recipe List";
+  } else if (selectedRecipe != null) {
+    currentlyVisibleState = (
+      <RecipeDetail
+        recipe={selectedRecipe}
+        onClickingDelete={handleDeletingRecipe}
+        onClickingEdit={handleEditClick}
+      />
+    );
+    buttonText = "Return to recipe List";
+  } else if (formVisibleOnPage) {
+    currentlyVisibleState = (
+      <NewRecipeForm onNewRecipeCreation={handleAddingNewRecipeToList} />
+    );
+    buttonText = "Return to recipe List";
+  } else {
+    currentlyVisibleState = (
+      <RecipeList
+        onRecipeSelection={handleChangingSelectedRecipe}
+        recipeList={mainRecipeList}
+      />
+    );
+    buttonText = "Add recipe";
   }
-}
+  return (
+    <React.Fragment>
+      {currentlyVisibleState}
+      <button onClick={handleClick}>{buttonText}</button>
+    </React.Fragment>
+  );
+};
+// }
 export default RecipeControl;
