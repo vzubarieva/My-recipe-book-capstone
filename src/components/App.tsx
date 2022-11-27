@@ -1,13 +1,18 @@
-import React from 'react';
+import React from "react";
 import Header from "./Header";
 import RecipeControl from "./RecipeControl";
+import SignIn from "./SignIn";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-     <React.Fragment>
+    <Router>
       <Header />
-      <RecipeControl />
-    </React.Fragment>
+      <Routes>
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/" element={<RecipeControl />} />
+      </Routes>
+    </Router>
   );
 }
 

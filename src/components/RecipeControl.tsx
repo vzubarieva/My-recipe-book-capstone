@@ -5,7 +5,14 @@ import EditRecipeForm from "./EditRecipeForm";
 import RecipeDetail from "./RecipeDetail";
 import { IRecipe } from "../models/Recipe";
 import { db } from "./../helpers/firebase";
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
 const RecipeControl = () => {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState<boolean>(false);
@@ -50,22 +57,20 @@ const RecipeControl = () => {
     }
   };
 
-  const handleDeletingRecipe = (id: string) => {
-    const newMainRecipeList = mainRecipeList.filter(
-      (recipe) => recipe.id !== id
-    );
-    setMainRecipeList(newMainRecipeList);
+  const handleDeletingRecipe = async (id: string) => {
+    await deleteDoc(doc(db, "tickets", id));
+    setSelectedRecipe(null);
   };
 
   const handleEditClick = () => {
     setEditing(true);
   };
 
-  const handleEditingRecipeInList = (recipeToEdit: IRecipe) => {
-    const editedMainRecipeList = mainRecipeList
-      .filter((recipe) => recipe.id !== selectedRecipe?.id)
-      .concat(recipeToEdit);
-    setMainRecipeList(editedMainRecipeList);
+  const handleEditingRecipeInList = async (recipeToEdit: IRecipe) => {
+    const recipeRef = doc(db, "recipes", recipeToEdit.id);
+    await updateDoc(recipeRef, recipeToEdit);
+    setEditing(false);
+    setSelectedRecipe(null);
   };
 
   const handleAddingNewRecipeToList = async (newRecipeData: IRecipe) => {
