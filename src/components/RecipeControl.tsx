@@ -1,17 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NewRecipeForm from "./NewRecipeForm";
 import RecipeList from "./RecipeList";
 import EditRecipeForm from "./EditRecipeForm";
 import RecipeDetail from "./RecipeDetail";
 import { IRecipe } from "../models/Recipe";
 import { db } from "./../helpers/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 
 const RecipeControl = () => {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState<boolean>(false);
   const [mainRecipeList, setMainRecipeList] = useState<Array<IRecipe>>([]);
   const [selectedRecipe, setSelectedRecipe] = useState<null | IRecipe>(null);
   const [editing, setEditing] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    const unSubscribe = onSnapshot(
+      collection(db, "recipes"),
+      (collectionSnapshot) => {
+        const recipes: IRecipe[] = [];
+        collectionSnapshot.forEach((doc) => {
+          recipes.push({
+            name: doc.data().name,
+            ingredients: doc.data().ingredients,
+            directions: doc.data().directions,
+            prepTime: doc.data().prepTime,
+            cookingTime: doc.data().cookingTime,
+            comments: doc.data().comments,
+            id: doc.id,
+          });
+        });
+        setMainRecipeList(recipes);
+      },
+      (error) => {
+        setError(error.message);
+      }
+    );
+
+    return () => unSubscribe();
+  }, []);
 
   const handleClick = () => {
     if (selectedRecipe != null) {
@@ -56,10 +83,12 @@ const RecipeControl = () => {
   };
 
   // render() {
+
   let currentlyVisibleState = null;
   let buttonText = null;
-
-  if (editing && selectedRecipe) {
+  if (error) {
+    currentlyVisibleState = <p>There was an error: {error}</p>;
+  } else if (editing && selectedRecipe) {
     currentlyVisibleState = (
       <EditRecipeForm
         recipe={selectedRecipe}
@@ -93,7 +122,7 @@ const RecipeControl = () => {
   return (
     <React.Fragment>
       {currentlyVisibleState}
-      <button onClick={handleClick}>{buttonText}</button>
+      {error ? null : <button onClick={handleClick}>{buttonText}</button>}{" "}
     </React.Fragment>
   );
 };
