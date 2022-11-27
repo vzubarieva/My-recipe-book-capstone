@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 } from "uuid";
 import ReusableForm from "./ReusableForm";
 import { IRecipe } from "../models/Recipe";
 
@@ -11,7 +10,6 @@ function NewRecipeForm(props: INewRecipeFormProps) {
   function handleNewRecipeFormSubmission(recipe: IRecipe) {
     props.onNewRecipeCreation({
       ...recipe,
-      id: v4(),
     });
   }
 

@@ -4,6 +4,8 @@ import RecipeList from "./RecipeList";
 import EditRecipeForm from "./EditRecipeForm";
 import RecipeDetail from "./RecipeDetail";
 import { IRecipe } from "../models/Recipe";
+import { db } from "./../helpers/firebase";
+import { collection, addDoc } from "firebase/firestore";
 
 const RecipeControl = () => {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState<boolean>(false);
@@ -39,9 +41,10 @@ const RecipeControl = () => {
     setMainRecipeList(editedMainRecipeList);
   };
 
-  const handleAddingNewRecipeToList = (newRecipe: IRecipe) => {
-    const newMainRecipeList = mainRecipeList.concat(newRecipe);
-    setMainRecipeList(newMainRecipeList);
+  const handleAddingNewRecipeToList = async (newRecipeData: IRecipe) => {
+    const collectionRef = collection(db, "recipes");
+    await addDoc(collectionRef, newRecipeData); // const newMainRecipeList = mainRecipeList.concat(newRecipe);
+    // setMainRecipeList(newMainRecipeList);
     setFormVisibleOnPage(false);
   };
 
