@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { auth } from "./../helpers/firebase";
+import { UserAuth } from "../context/AuthContext";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
 } from "firebase/auth";
+import GoogleButton from "react-google-button";
 
 function SignIn() {
   const [signUpSuccess, setSignUpSuccess] = useState<string>("");
   const [signInSuccess, setSignInSuccess] = useState<string>("");
   const [signOutSuccess, setSignOutSuccess] = useState<string>("");
 
-  function doSignUp(event) {
+  const doSignUp = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
@@ -24,9 +29,9 @@ function SignIn() {
       .catch((error) => {
         setSignUpSuccess(`There was an error signing up: ${error.message}!`);
       });
-  }
+  };
 
-  function doSignIn(event) {
+  const doSignIn = (event) => {
     event.preventDefault();
     const email = event.target.signinEmail.value;
     const password = event.target.signinPassword.value;
@@ -39,9 +44,19 @@ function SignIn() {
       .catch((error) => {
         setSignInSuccess(`There was an error signing in: ${error.message}!`);
       });
-  }
+  };
 
-  function doSignOut() {
+  const { googleSignIn } = UserAuth();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const doSignOut = () => {
     signOut(auth)
       .then(function () {
         setSignOutSuccess("You have successfully signed out!");
@@ -49,7 +64,7 @@ function SignIn() {
       .catch(function (error) {
         setSignOutSuccess(`There was an error signing out: ${error.message}!`);
       });
-  }
+  };
 
   return (
     <React.Fragment>
@@ -68,6 +83,10 @@ function SignIn() {
         <input type="password" name="signinPassword" placeholder="Password" />
         <button type="submit">Sign in</button>
       </form>
+
+      <div className="max-w-[240px] m-auto py-4">
+        <GoogleButton onClick={handleGoogleSignIn} />{" "}
+      </div>
 
       <h1>Sign Out</h1>
       {signOutSuccess}

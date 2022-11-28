@@ -68,7 +68,7 @@ const RecipeControl = () => {
 
   const handleEditingRecipeInList = async (recipeToEdit: IRecipe) => {
     const recipeRef = doc(db, "recipes", recipeToEdit.id);
-    await updateDoc(recipeRef, recipeToEdit);
+    await updateDoc(recipeRef, { ...recipeToEdit });
     setEditing(false);
     setSelectedRecipe(null);
   };
@@ -134,12 +134,12 @@ const RecipeControl = () => {
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        {error ? null : (
-          <button onClick={handleClick}>{buttonText}</button>
-        )}{" "}
+        {error ? null : <button onClick={handleClick}>{buttonText}</button>}
       </React.Fragment>
     );
   }
+
+  return <></>;
 };
-// }
+
 export default RecipeControl;
