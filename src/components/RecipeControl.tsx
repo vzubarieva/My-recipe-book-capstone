@@ -4,7 +4,7 @@ import RecipeList from "./RecipeList";
 import EditRecipeForm from "./EditRecipeForm";
 import RecipeDetail from "./RecipeDetail";
 import { IRecipe } from "../models/Recipe";
-import { db } from "./../helpers/firebase";
+import { db, auth } from "./../helpers/firebase";
 import {
   collection,
   addDoc,
@@ -88,48 +88,58 @@ const RecipeControl = () => {
   };
 
   // render() {
+  if (auth.currentUser == null) {
+    return (
+      <React.Fragment>
+        <h1>Please sign in to add recipes.</h1>
+      </React.Fragment>
+    );
+  } else if (auth.currentUser != null) {
+    let currentlyVisibleState = null;
+    let buttonText = null;
 
-  let currentlyVisibleState = null;
-  let buttonText = null;
-  if (error) {
-    currentlyVisibleState = <p>There was an error: {error}</p>;
-  } else if (editing && selectedRecipe) {
-    currentlyVisibleState = (
-      <EditRecipeForm
-        recipe={selectedRecipe}
-        onEditRecipe={handleEditingRecipeInList}
-      />
+    if (error) {
+      currentlyVisibleState = <p>There was an error: {error}</p>;
+    } else if (editing && selectedRecipe) {
+      currentlyVisibleState = (
+        <EditRecipeForm
+          recipe={selectedRecipe}
+          onEditRecipe={handleEditingRecipeInList}
+        />
+      );
+      buttonText = "Return to recipe List";
+    } else if (selectedRecipe != null) {
+      currentlyVisibleState = (
+        <RecipeDetail
+          recipe={selectedRecipe}
+          onClickingDelete={handleDeletingRecipe}
+          onClickingEdit={handleEditClick}
+        />
+      );
+      buttonText = "Return to recipe List";
+    } else if (formVisibleOnPage) {
+      currentlyVisibleState = (
+        <NewRecipeForm onNewRecipeCreation={handleAddingNewRecipeToList} />
+      );
+      buttonText = "Return to recipe List";
+    } else {
+      currentlyVisibleState = (
+        <RecipeList
+          onRecipeSelection={handleChangingSelectedRecipe}
+          recipeList={mainRecipeList}
+        />
+      );
+      buttonText = "Add recipe";
+    }
+    return (
+      <React.Fragment>
+        {currentlyVisibleState}
+        {error ? null : (
+          <button onClick={handleClick}>{buttonText}</button>
+        )}{" "}
+      </React.Fragment>
     );
-    buttonText = "Return to recipe List";
-  } else if (selectedRecipe != null) {
-    currentlyVisibleState = (
-      <RecipeDetail
-        recipe={selectedRecipe}
-        onClickingDelete={handleDeletingRecipe}
-        onClickingEdit={handleEditClick}
-      />
-    );
-    buttonText = "Return to recipe List";
-  } else if (formVisibleOnPage) {
-    currentlyVisibleState = (
-      <NewRecipeForm onNewRecipeCreation={handleAddingNewRecipeToList} />
-    );
-    buttonText = "Return to recipe List";
-  } else {
-    currentlyVisibleState = (
-      <RecipeList
-        onRecipeSelection={handleChangingSelectedRecipe}
-        recipeList={mainRecipeList}
-      />
-    );
-    buttonText = "Add recipe";
   }
-  return (
-    <React.Fragment>
-      {currentlyVisibleState}
-      {error ? null : <button onClick={handleClick}>{buttonText}</button>}{" "}
-    </React.Fragment>
-  );
 };
 // }
 export default RecipeControl;
