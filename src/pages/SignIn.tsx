@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "./../helpers/firebase";
+import { auth } from "../helpers/firebase";
 import { UserAuth } from "../context/AuthContext";
 import {
   createUserWithEmailAndPassword,
@@ -57,7 +57,7 @@ function SignIn() {
 
   useEffect(() => {
     if (user != null) {
-      navigate("/account");
+      navigate("/MyRecipes");
     }
   }, [user, navigate]);
 

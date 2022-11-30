@@ -58,7 +58,7 @@ const RecipeControl = () => {
   };
 
   const handleDeletingRecipe = async (id: string) => {
-    await deleteDoc(doc(db, "tickets", id));
+    await deleteDoc(doc(db, "recipes", id));
     setSelectedRecipe(null);
   };
 
