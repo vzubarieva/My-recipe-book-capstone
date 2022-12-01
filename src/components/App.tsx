@@ -12,12 +12,14 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Home from "../pages/Home";
+import { Container } from "@mui/material";
 
 function App() {
   return (
     <AuthContextProvider>
       <Router>
         <Navbar />
+
         {/* <Header /> */}
         <Routes>
           <Route path="/signIn" element={<SignIn />} />
