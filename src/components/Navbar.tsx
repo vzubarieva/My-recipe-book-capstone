@@ -59,7 +59,7 @@ export default function ButtonAppBar() {
                 <Link to="/">Home</Link>
               </Typography>
               <Typography variant="h6" component="div">
-                About
+                <Link to="/About">About</Link>
               </Typography>
               <Typography variant="h6" component="div">
                 <Link to="/MyRecipes">My recipes</Link>

@@ -1,6 +1,7 @@
-import { Stack, Typography } from "@mui/material";
+import { CssBaseline, Stack, Typography } from "@mui/material";
 import React from "react";
 import mainImage from "./../img/brightpic.jpg";
+import SignIn from "./SignIn";
 
 function Home() {
   return (
@@ -11,7 +12,22 @@ function Home() {
         minHeight: "calc(100vh - 68px)",
       }}
     >
-      <Typography>Home</Typography>
+      <CssBaseline />
+      <Typography
+        sx={{
+          fontFamily: "EB Garamond",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+          textAlign: "center",
+          fontSize: "6rem",
+          margin: "0 0 0 30%",
+        }}
+      >
+        My recipe book
+      </Typography>
+      <SignIn />
     </Stack>
   );
 }

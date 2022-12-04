@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import GoogleButton from "react-google-button";
 import { useNavigate } from "react-router-dom";
+import { Stack } from "@mui/material";
 
 function SignIn() {
   // const [signUpSuccess, setSignUpSuccess] = useState<string>("");
@@ -89,9 +90,13 @@ function SignIn() {
         <button type="submit">Sign in</button>
       </form> */}
 
-      <div className="max-w-[240px] m-auto py-4">
+      <Stack
+        sx={{
+          margin: "0 0 50% 60%",
+        }}
+      >
         <GoogleButton onClick={handleGoogleSignIn} />{" "}
-      </div>
+      </Stack>
 
       {/* <h1>Sign Out</h1>
       {signOutSuccess}
