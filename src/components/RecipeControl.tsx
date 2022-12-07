@@ -13,6 +13,8 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
+import Button from "@mui/material/Button";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 const RecipeControl = () => {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState<boolean>(false);
@@ -134,7 +136,22 @@ const RecipeControl = () => {
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        {error ? null : <button onClick={handleClick}>{buttonText}</button>}
+        {error ? null : (
+          <Button
+            onClick={handleClick}
+            sx={{
+              marginTop: 3,
+              marginBottom: 3,
+              display: "flex",
+            }}
+            type="submit"
+            color="secondary"
+            variant="contained"
+            endIcon={<ArrowBackIosIcon />}
+          >
+            {buttonText}
+          </Button>
+        )}
       </React.Fragment>
     );
   }
