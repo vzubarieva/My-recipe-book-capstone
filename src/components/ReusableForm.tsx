@@ -1,4 +1,11 @@
-import { TextField, textFieldClasses } from "@mui/material";
+import {
+  TextField,
+  textFieldClasses,
+  Typography,
+  Card,
+  CardHeader,
+  CardContent,
+} from "@mui/material";
 import React, { FormEvent } from "react";
 import { IRecipe } from "../models/Recipe";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -6,6 +13,7 @@ import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Input from "@mui/material/Input";
+import { Box } from "@mui/system";
 
 interface IRecipeDetailProps {
   recipe?: IRecipe | null;
@@ -28,66 +36,69 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
   };
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          sx={{
-            marginTop: 3,
-            marginBottom: 3,
-            display: "block",
-          }}
-          label="Recipe Name"
-          name="recipeName"
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          required
-          defaultValue={recipe?.name}
-        />
-        <TextField
-          sx={{
-            marginTop: 3,
-            marginBottom: 3,
-            display: "block",
-          }}
-          label="Ingredients"
-          name="ingredients"
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          required
-          multiline
-          rows={3}
-          defaultValue={recipe?.ingredients}
-        />
-        <TextField
-          sx={{
-            marginTop: 3,
-            marginBottom: 3,
-            display: "block",
-          }}
-          label="Directions"
-          name="directions"
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          required
-          multiline
-          rows={3}
-          defaultValue={recipe?.directions}
-        />
-        <TextField
-          label="Preparation time"
-          color="secondary"
-          id="outlined-start-adornment"
-          sx={{ m: 1, width: "25ch" }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">min</InputAdornment>
-            ),
-          }}
-          defaultValue={recipe?.prepTime}
-        />
-        {/* <TextField
+      <Card sx={{ backgroundColor: "#ffffffcc" }}>
+        <CardHeader title="New recipe" subheader="create new recipe" />
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              sx={{
+                marginTop: 3,
+                marginBottom: 3,
+                display: "block",
+              }}
+              label="Recipe Name"
+              name="recipeName"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              required
+              defaultValue={recipe?.name}
+            />
+            <TextField
+              sx={{
+                marginTop: 3,
+                marginBottom: 3,
+                display: "block",
+              }}
+              label="Ingredients"
+              name="ingredients"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              required
+              multiline
+              rows={3}
+              defaultValue={recipe?.ingredients}
+            />
+            <TextField
+              sx={{
+                marginTop: 3,
+                marginBottom: 3,
+                display: "block",
+              }}
+              label="Directions"
+              name="directions"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              required
+              multiline
+              rows={3}
+              defaultValue={recipe?.directions}
+            />
+            <TextField
+              label="Preparation time"
+              color="secondary"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: "25ch" }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">min</InputAdornment>
+                ),
+              }}
+              defaultValue={recipe?.prepTime}
+            />
+            {/* <TextField
           inputProps={{
             inputMode: "numeric",
             pattern: "[0-9]",
@@ -99,52 +110,55 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
           
         /> */}
 
-        {/* <input
+            {/* <input
           type="number"
           name="prepTime"
           placeholder="Preparation time"
           defaultValue={recipe?.prepTime}
         /> */}
-        <TextField
-          label="Cooking time"
-          color="secondary"
-          id="outlined-start-adornment"
-          sx={{ m: 1, width: "25ch" }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">min</InputAdornment>
-            ),
-          }}
-          defaultValue={recipe?.cookingTime}
-        />
-        {/* <input type="number" name="cookingTime" placeholder="Cooking time" /> */}
-        <TextField
-          sx={{
-            marginTop: 3,
-            marginBottom: 3,
-            display: "block",
-          }}
-          label="Comments"
-          name="comments"
-          variant="outlined"
-          color="secondary"
-          fullWidth
-          defaultValue={recipe?.comments}
-        />
-        <Button
-          sx={{
-            marginTop: 3,
-            marginBottom: 3,
-            display: "flex",
-          }}
-          type="submit"
-          color="secondary"
-          variant="contained"
-          endIcon={<ArrowForwardIosIcon />}
-        >
-          {buttonText}
-        </Button>
-      </form>
+            <TextField
+              label="Cooking time"
+              color="secondary"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: "25ch" }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">min</InputAdornment>
+                ),
+              }}
+              defaultValue={recipe?.cookingTime}
+            />
+            {/* <input type="number" name="cookingTime" placeholder="Cooking time" /> */}
+            <TextField
+              sx={{
+                marginTop: 3,
+                marginBottom: 3,
+                display: "block",
+              }}
+              label="Comments"
+              name="comments"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              defaultValue={recipe?.comments}
+            />
+          </form>
+        </CardContent>
+      </Card>
+      <Button
+        sx={{
+          marginTop: 3,
+          marginBottom: 3,
+          display: "flex",
+        }}
+        type="submit"
+        color="secondary"
+        variant="contained"
+        endIcon={<ArrowForwardIosIcon />}
+      >
+        {buttonText}
+      </Button>
+      {/* </form> */}
     </React.Fragment>
   );
 }

@@ -14,7 +14,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import Button from "@mui/material/Button";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const RecipeControl = () => {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState<boolean>(false);
@@ -147,7 +147,7 @@ const RecipeControl = () => {
             type="submit"
             color="secondary"
             variant="contained"
-            endIcon={<ArrowBackIosIcon />}
+            endIcon={<ArrowForwardIosIcon />}
           >
             {buttonText}
           </Button>
