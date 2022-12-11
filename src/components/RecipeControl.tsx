@@ -135,7 +135,6 @@ const RecipeControl = () => {
     }
     return (
       <React.Fragment>
-        {currentlyVisibleState}
         {error ? null : (
           <Button
             onClick={handleClick}
@@ -152,6 +151,7 @@ const RecipeControl = () => {
             {buttonText}
           </Button>
         )}
+        {currentlyVisibleState}
       </React.Fragment>
     );
   }

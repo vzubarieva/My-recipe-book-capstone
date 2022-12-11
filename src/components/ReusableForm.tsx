@@ -87,15 +87,16 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               defaultValue={recipe?.directions}
             />
             <TextField
-              label="Preparation time"
-              color="secondary"
-              id="outlined-start-adornment"
               sx={{ m: 1, width: "25ch" }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">min</InputAdornment>
                 ),
               }}
+              label="Preparation time"
+              name="prepTime"
+              color="secondary"
+              id="outlined-start-adornment"
               defaultValue={recipe?.prepTime}
             />
             {/* <TextField
@@ -117,15 +118,16 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
           defaultValue={recipe?.prepTime}
         /> */}
             <TextField
-              label="Cooking time"
-              color="secondary"
-              id="outlined-start-adornment"
-              sx={{ m: 1, width: "25ch" }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">min</InputAdornment>
                 ),
               }}
+              name="cookingTime"
+              label="Cooking time"
+              color="secondary"
+              id="outlined-start-adornment"
+              sx={{ m: 1, width: "25ch" }}
               defaultValue={recipe?.cookingTime}
             />
             {/* <input type="number" name="cookingTime" placeholder="Cooking time" /> */}
@@ -142,23 +144,24 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               fullWidth
               defaultValue={recipe?.comments}
             />
-          </form>
+            {/* </form> */}
+
+            <Button
+              sx={{
+                marginTop: 3,
+                marginBottom: 3,
+                display: "flex",
+              }}
+              type="submit"
+              color="secondary"
+              variant="contained"
+              endIcon={<ArrowForwardIosIcon />}
+            >
+              {buttonText}
+            </Button>
+          </form>{" "}
         </CardContent>
       </Card>
-      <Button
-        sx={{
-          marginTop: 3,
-          marginBottom: 3,
-          display: "flex",
-        }}
-        type="submit"
-        color="secondary"
-        variant="contained"
-        endIcon={<ArrowForwardIosIcon />}
-      >
-        {buttonText}
-      </Button>
-      {/* </form> */}
     </React.Fragment>
   );
 }

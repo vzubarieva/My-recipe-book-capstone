@@ -11,7 +11,8 @@ const MyRecipes = () => {
   return (
     <Stack
       sx={{
-        background: `url(${myRecipeImage}) no-repeat center center `,
+        background: `url(${myRecipeImage}) no-repeat center center fixed `,
+        minHeight: "calc(100vh - 68px)",
       }}
     >
       <Container>
