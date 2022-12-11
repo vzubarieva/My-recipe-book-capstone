@@ -32,6 +32,7 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
       cookingTime: formData.cookingTime.value,
       comments: formData.comments.value,
       id: "",
+      author: "",
     });
   };
   return (

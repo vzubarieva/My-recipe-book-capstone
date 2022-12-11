@@ -12,11 +12,16 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  query,
+  where,
 } from "firebase/firestore";
 import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { UserAuth } from "../context/AuthContext";
 
 const RecipeControl = () => {
+  const { user } = UserAuth();
+
   const [formVisibleOnPage, setFormVisibleOnPage] = useState<boolean>(false);
   const [mainRecipeList, setMainRecipeList] = useState<Array<IRecipe>>([]);
   const [selectedRecipe, setSelectedRecipe] = useState<null | IRecipe>(null);
@@ -25,7 +30,7 @@ const RecipeControl = () => {
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
-      collection(db, "recipes"),
+      query(collection(db, "recipes"), where("author", "==", user.uid)),
       (collectionSnapshot) => {
         const recipes: IRecipe[] = [];
         collectionSnapshot.forEach((doc) => {
@@ -37,6 +42,7 @@ const RecipeControl = () => {
             cookingTime: doc.data().cookingTime,
             comments: doc.data().comments,
             id: doc.id,
+            author: doc.data().author,
           });
         });
         setMainRecipeList(recipes);
@@ -70,14 +76,17 @@ const RecipeControl = () => {
 
   const handleEditingRecipeInList = async (recipeToEdit: IRecipe) => {
     const recipeRef = doc(db, "recipes", recipeToEdit.id);
-    await updateDoc(recipeRef, { ...recipeToEdit });
+    await updateDoc(recipeRef, { ...recipeToEdit, author: user.uid });
     setEditing(false);
     setSelectedRecipe(null);
   };
 
   const handleAddingNewRecipeToList = async (newRecipeData: IRecipe) => {
     const collectionRef = collection(db, "recipes");
-    await addDoc(collectionRef, newRecipeData); // const newMainRecipeList = mainRecipeList.concat(newRecipe);
+    await addDoc(collectionRef, {
+      ...newRecipeData,
+      author: user.uid,
+    }); // const newMainRecipeList = mainRecipeList.concat(newRecipe);
     // setMainRecipeList(newMainRecipeList);
     setFormVisibleOnPage(false);
   };
