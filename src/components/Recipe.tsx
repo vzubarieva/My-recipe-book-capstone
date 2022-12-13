@@ -45,11 +45,11 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, backgroundColor: "#ffffffcc" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+          <Avatar sx={{ bgcolor: red["A400"] }} aria-label="recipe">
+            VZ
           </Avatar>
         }
         // action={
@@ -59,9 +59,11 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
         // }
         title={
           <Typography
+            variant="h3"
             onClick={() => whenRecipeClicked(recipe.id)}
             sx={{
               cursor: "pointer",
+              fontFamily: "EB Garamond",
             }}
           >
             {recipe.name}
@@ -76,7 +78,12 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
         alt="Paella dish"
       /> */}
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography
+          variant="h6"
+          // variant="body2"
+          color="text.primary"
+          sx={{ fontFamily: "Roboto" }}
+        >
           {recipe.ingredients}
         </Typography>
       </CardContent>
@@ -84,9 +91,7 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -98,12 +103,18 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Directions:</Typography>
+          <Typography paragraph variant="h6">
+            Directions:
+          </Typography>
           <Typography paragraph>{recipe.directions}</Typography>
-          <Typography paragraph>Preparation time:</Typography>
-          <Typography paragraph>{recipe.prepTime}</Typography>
-          <Typography paragraph>Cooking time:</Typography>
-          <Typography paragraph>{recipe.cookingTime}</Typography>
+          <Typography paragraph variant="h6">
+            Preparation time:
+          </Typography>
+          <Typography paragraph>{recipe.prepTime} min</Typography>
+          <Typography paragraph variant="h6">
+            Cooking time:
+          </Typography>
+          <Typography paragraph>{recipe.cookingTime} min</Typography>
           <Typography>{recipe.comments}</Typography>
         </CardContent>
       </Collapse>

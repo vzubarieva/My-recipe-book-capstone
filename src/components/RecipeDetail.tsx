@@ -7,10 +7,12 @@ import {
   CardActions,
   IconButton,
   Collapse,
+  Button,
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 import React from "react";
 import { IRecipe } from "../models/Recipe";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 interface IRecipeDetailProps {
   onClickingEdit: (id: string) => void;
@@ -23,9 +25,16 @@ function RecipeDetail(props: IRecipeDetailProps) {
 
   return (
     <React.Fragment>
-      <Card>
+      <Card sx={{ backgroundColor: "#ffffffcc" }}>
         <CardHeader
-          title={recipe.name}
+          title={
+            <Typography
+              variant="h3"
+              sx={{ fontFamily: "EB Garamond", textAlign: "center" }}
+            >
+              {recipe.name}
+            </Typography>
+          }
 
           // subheader="September 14, 2016"
         />
@@ -36,27 +45,65 @@ function RecipeDetail(props: IRecipeDetailProps) {
         alt="Paella dish"
       /> */}
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="h5" color="text.primary">
             {recipe.ingredients}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-          <button onClick={() => onClickingEdit(recipe.id)}>
-            Update recipe
-          </button>
-          <button onClick={() => onClickingDelete(recipe.id)}>
-            Delete recipe
-          </button>
-        </CardActions>
 
         <CardContent>
-          <Typography paragraph>Directions:</Typography>
-          <Typography paragraph>{recipe.directions}</Typography>
-          <Typography paragraph>Preparation time:</Typography>
-          <Typography paragraph>{recipe.prepTime}</Typography>
-          <Typography paragraph>Cooking time:</Typography>
-          <Typography paragraph>{recipe.cookingTime}</Typography>
-          <Typography>{recipe.comments}</Typography>
+          <Typography paragraph variant="h4">
+            Directions:
+          </Typography>
+          <Typography paragraph variant="h5">
+            {recipe.directions}
+          </Typography>
+          <Typography paragraph variant="h4">
+            Preparation time:
+          </Typography>
+          <Typography paragraph variant="h5">
+            {recipe.prepTime} min
+          </Typography>
+          <Typography paragraph variant="h4">
+            Cooking time:
+          </Typography>
+          <Typography paragraph variant="h5">
+            {recipe.cookingTime} min
+          </Typography>
+          <Typography variant="h5">{recipe.comments}</Typography>
+          <Button
+            onClick={() => onClickingEdit(recipe.id)}
+            sx={{
+              marginTop: 3,
+              marginBottom: 3,
+              marginRight: 3,
+              marginLeft: 1,
+              display: "flex",
+            }}
+            type="submit"
+            color="secondary"
+            variant="contained"
+            // endIcon={<ArrowForwardIosIcon />}
+          >
+            Update recipe
+          </Button>
+
+          <Button
+            onClick={() => onClickingDelete(recipe.id)}
+            sx={{
+              marginTop: 3,
+              marginBottom: 3,
+              marginRight: 3,
+              marginLeft: 1,
+
+              display: "flex",
+            }}
+            type="submit"
+            color="secondary"
+            variant="contained"
+            // endIcon={<ArrowForwardIosIcon />}
+          >
+            Delete recipe
+          </Button>
         </CardContent>
       </Card>
     </React.Fragment>
