@@ -1,5 +1,6 @@
 import { IRecipe } from "../models/Recipe";
 import * as React from "react";
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -45,7 +46,7 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: "#ffffffcc" }}>
+    <Card elevation={3} sx={{ maxWidth: 345, backgroundColor: "#ffffffcc" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red["A400"] }} aria-label="recipe">
@@ -59,7 +60,7 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
         // }
         title={
           <Typography
-            variant="h3"
+            variant="h4"
             onClick={() => whenRecipeClicked(recipe.id)}
             sx={{
               cursor: "pointer",
@@ -71,18 +72,18 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
         }
         // subheader="September 14, 2016"
       />
-      {/* <CardMedia
+      <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        image={recipe.coverUrl}
         alt="Paella dish"
-      /> */}
+      />
       <CardContent>
         <Typography
-          variant="h6"
-          // variant="body2"
+          // variant="h6"
+          variant="body2"
           color="text.primary"
-          sx={{ fontFamily: "Roboto" }}
+          sx={{ fontFamily: "Roboto", maxHeight: 300 }}
         >
           {recipe.ingredients}
         </Typography>
@@ -104,7 +105,7 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph variant="h6">
-            Directions:
+            Method:
           </Typography>
           <Typography paragraph>{recipe.directions}</Typography>
           <Typography paragraph variant="h6">

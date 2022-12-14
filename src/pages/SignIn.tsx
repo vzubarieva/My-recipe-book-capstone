@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import GoogleButton from "react-google-button";
 import { useNavigate } from "react-router-dom";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 function SignIn() {
   const { googleSignIn, user } = UserAuth();
@@ -33,13 +33,13 @@ function SignIn() {
 
   return (
     <React.Fragment>
-      <Stack
+      <Box
         sx={{
-          margin: "0 0 50% 60%",
+          marginLeft: "60%",
         }}
       >
         {user ? "" : <GoogleButton onClick={handleGoogleSignIn} />}
-      </Stack>
+      </Box>
     </React.Fragment>
   );
 }

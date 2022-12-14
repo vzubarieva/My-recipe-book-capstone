@@ -9,20 +9,18 @@ function Home() {
       sx={{
         background: `url(${mainImage}) no-repeat center center fixed;`,
         backgroundSize: "cover",
-        minHeight: "calc(100vh - 68px)",
+        minHeight: "calc(100vh - 64px)",
       }}
     >
-      <CssBaseline />
       <Typography
         sx={{
           fontFamily: "EB Garamond",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "80vh",
           textAlign: "center",
-          fontSize: "6rem",
-          margin: "0 0 0 30%",
+          fontSize: "5rem",
+          margin: "15% 0 0 30%",
         }}
       >
         My recipe book

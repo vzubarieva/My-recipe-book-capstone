@@ -12,28 +12,35 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Home from "../pages/Home";
-import { Container } from "@mui/material";
+import { Box, Container, CssBaseline } from "@mui/material";
 import About from "../pages/About";
 
 function App() {
   return (
     <AuthContextProvider>
+      <CssBaseline />
       <Router>
         <Navbar />
         {/* <Header /> */}
-        <Routes>
-          <Route path="/signIn" element={<SignIn />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/About" element={<About />} />
-          <Route
-            path="/MyRecipes"
-            element={
-              <Protected>
-                <MyRecipes />
-              </Protected>
-            }
-          />
-        </Routes>
+        <Box
+          sx={{
+            paddingTop: "64px",
+          }}
+        >
+          <Routes>
+            <Route path="/signIn" element={<SignIn />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/About" element={<About />} />
+            <Route
+              path="/MyRecipes"
+              element={
+                <Protected>
+                  <MyRecipes />
+                </Protected>
+              }
+            />
+          </Routes>
+        </Box>
       </Router>
     </AuthContextProvider>
   );

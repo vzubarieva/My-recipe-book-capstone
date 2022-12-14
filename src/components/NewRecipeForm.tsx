@@ -1,13 +1,13 @@
 import React from "react";
 import ReusableForm from "./ReusableForm";
-import { IRecipe } from "../models/Recipe";
+import { IRecipe, IRecipeForm } from "../models/Recipe";
 
 interface INewRecipeFormProps {
-  onNewRecipeCreation: (recipe: IRecipe) => void;
+  onNewRecipeCreation: (recipe: IRecipeForm) => void;
 }
 
 function NewRecipeForm(props: INewRecipeFormProps) {
-  function handleNewRecipeFormSubmission(recipe: IRecipe) {
+  function handleNewRecipeFormSubmission(recipe: IRecipeForm) {
     props.onNewRecipeCreation({
       ...recipe,
     });

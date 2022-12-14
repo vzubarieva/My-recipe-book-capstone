@@ -1,14 +1,14 @@
 import React from "react";
 import ReusableForm from "./ReusableForm";
-import { IRecipe } from "../models/Recipe";
+import { IRecipe, IRecipeForm } from "../models/Recipe";
 
 interface IEditRecipeFormProps {
-  onEditRecipe: (recipe: IRecipe) => void;
+  onEditRecipe: (recipe: IRecipeForm) => void;
   recipe: IRecipe;
 }
 
 function EditRecipeForm({ recipe, onEditRecipe }: IEditRecipeFormProps) {
-  function handleEditRecipeFormSubmission(updatedRecipe: IRecipe) {
+  function handleEditRecipeFormSubmission(updatedRecipe: IRecipeForm) {
     onEditRecipe({
       ...updatedRecipe,
       id: recipe.id,

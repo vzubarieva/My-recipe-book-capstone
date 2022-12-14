@@ -7,7 +7,7 @@ import {
   CardContent,
 } from "@mui/material";
 import React, { FormEvent } from "react";
-import { IRecipe } from "../models/Recipe";
+import { IRecipe, IRecipeForm } from "../models/Recipe";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -15,9 +15,20 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Input from "@mui/material/Input";
 import { Box } from "@mui/system";
 
+const AcceptedFileType = {
+  Text: ".txt",
+  Gif: ".gif",
+  Jpeg: ".jpg",
+  Png: ".png",
+  Doc: ".doc",
+  Pdf: ".pdf",
+  AllImages: "image/*",
+  AllVideos: "video/*",
+  AllAudios: "audio/*",
+};
 interface IRecipeDetailProps {
   recipe?: IRecipe | null;
-  onSubmit: (recipe: IRecipe) => void;
+  onSubmit: (recipe: IRecipeForm) => void;
   buttonText: string;
 }
 function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
@@ -33,8 +44,38 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
       comments: formData.comments.value,
       id: "",
       author: "",
+      coverPhoto: selectedFiles,
     });
   };
+
+  const fileRef = React.useRef<any>();
+  const acceptedFormats = AcceptedFileType.AllImages;
+  const [selectedFiles, setSelectedFiles] = React.useState<File>(null);
+
+  const handleFileSelect = (event) => {
+    setSelectedFiles(event?.target?.files?.[0]);
+  };
+
+  const onUpload = () => {
+    console.log(selectedFiles);
+  };
+
+  const onClear = () => {
+    setSelectedFiles(undefined);
+  };
+
+  const onUpdate = (event) => {
+    if (event.target.textContent.trim().toLowerCase() === "change") {
+      onClear();
+      fileRef.current.click();
+      return;
+    }
+    if (event.target.textContent.trim().toLowerCase() === "clear") {
+      onClear();
+      return;
+    }
+  };
+
   return (
     <React.Fragment>
       <Card sx={{ backgroundColor: "#ffffffcc" }}>
@@ -55,6 +96,45 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               required
               defaultValue={recipe?.name}
             />
+            <>
+              <input
+                ref={fileRef}
+                hidden
+                type="file"
+                accept={acceptedFormats}
+                onChange={handleFileSelect}
+              />
+              {!selectedFiles?.name && (
+                <Button
+                  variant="contained"
+                  component="label"
+                  style={{ textTransform: "none" }}
+                  onClick={() => fileRef.current?.click()}
+                >
+                  Choose file to upload
+                </Button>
+              )}
+              {selectedFiles?.name && (
+                <Button
+                  variant="contained"
+                  component="label"
+                  style={{ textTransform: "none" }}
+                  onClick={onUpdate}
+                >
+                  <span style={{ float: "left" }}> {selectedFiles?.name}</span>
+                  <span style={{ padding: "10px" }}> Change</span>
+                  <span>Clear</span>
+                </Button>
+              )}
+              <Button
+                color="primary"
+                disabled={!selectedFiles}
+                style={{ textTransform: "none" }}
+                onClick={onUpload}
+              >
+                Upload
+              </Button>
+            </>
             <TextField
               sx={{
                 marginTop: 3,

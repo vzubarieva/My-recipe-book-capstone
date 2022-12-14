@@ -52,7 +52,7 @@ function RecipeDetail(props: IRecipeDetailProps) {
 
         <CardContent>
           <Typography paragraph variant="h4">
-            Directions:
+            Method:
           </Typography>
           <Typography paragraph variant="h5">
             {recipe.directions}

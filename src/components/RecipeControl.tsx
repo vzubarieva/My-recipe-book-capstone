@@ -3,8 +3,8 @@ import NewRecipeForm from "./NewRecipeForm";
 import RecipeList from "./RecipeList";
 import EditRecipeForm from "./EditRecipeForm";
 import RecipeDetail from "./RecipeDetail";
-import { IRecipe } from "../models/Recipe";
-import { db, auth } from "./../helpers/firebase";
+import { IRecipe, IRecipeForm } from "../models/Recipe";
+import { db, auth, storage } from "./../helpers/firebase";
 import {
   collection,
   addDoc,
@@ -18,6 +18,8 @@ import {
 import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { UserAuth } from "../context/AuthContext";
+import { v4 as uuidv4 } from "uuid";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const RecipeControl = () => {
   const { user } = UserAuth();
@@ -43,6 +45,8 @@ const RecipeControl = () => {
             comments: doc.data().comments,
             id: doc.id,
             author: doc.data().author,
+            coverImageId: doc.data().coverImageId,
+            coverUrl: doc.data().coverUrl,
           });
         });
         setMainRecipeList(recipes);
@@ -74,18 +78,57 @@ const RecipeControl = () => {
     setEditing(true);
   };
 
-  const handleEditingRecipeInList = async (recipeToEdit: IRecipe) => {
+  const handleEditingRecipeInList = async (recipeToEdit: IRecipeForm) => {
+    const { coverPhoto, ...recipe } = recipeToEdit;
+
+    let coverUrl = recipeToEdit.coverUrl;
+    let imageId = recipeToEdit.coverImageId;
+
+    if (coverPhoto) {
+      if (!imageId) {
+        imageId = uuidv4();
+      }
+
+      const storageRef = ref(storage, `images/${imageId}`);
+      const imageSnapshot = await uploadBytes(storageRef, coverPhoto, {
+        contentType: "image/jpeg",
+      });
+      coverUrl = await getDownloadURL(imageSnapshot.ref);
+    }
+
     const recipeRef = doc(db, "recipes", recipeToEdit.id);
-    await updateDoc(recipeRef, { ...recipeToEdit, author: user.uid });
+    await updateDoc(recipeRef, {
+      ...recipe,
+      author: user.uid,
+      coverUrl,
+      imageId,
+    });
     setEditing(false);
     setSelectedRecipe(null);
   };
 
-  const handleAddingNewRecipeToList = async (newRecipeData: IRecipe) => {
+  const handleAddingNewRecipeToList = async (newRecipeData: IRecipeForm) => {
+    const { coverPhoto, ...recipe } = newRecipeData;
+
+    let coverUrl = "";
+    let imageId = "";
+
+    if (coverPhoto) {
+      imageId = uuidv4();
+
+      const storageRef = ref(storage, `images/${imageId}`);
+      const imageSnapshot = await uploadBytes(storageRef, coverPhoto, {
+        contentType: "image/jpeg",
+      });
+      coverUrl = await getDownloadURL(imageSnapshot.ref);
+    }
+
     const collectionRef = collection(db, "recipes");
     await addDoc(collectionRef, {
-      ...newRecipeData,
+      ...recipe,
       author: user.uid,
+      coverImageId: imageId,
+      coverUrl,
     }); // const newMainRecipeList = mainRecipeList.concat(newRecipe);
     // setMainRecipeList(newMainRecipeList);
     setFormVisibleOnPage(false);

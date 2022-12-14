@@ -35,49 +35,47 @@ export default function ButtonAppBar() {
     }
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        component="nav"
-        position="static"
-        sx={{
-          backgroundColor: red["A400"],
-        }}
-      >
-        <Container maxWidth="xl">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Stack direction={"row"} sx={{ flexGrow: 1 }} spacing={4}>
-              <Typography variant="h6" component="div">
-                <Link to="/">Home</Link>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <Link to="/About">About</Link>
-              </Typography>
-              <Typography variant="h6" component="div">
-                <Link to="/MyRecipes">My recipes</Link>
-              </Typography>
-            </Stack>
-            <Stack>
-              {user?.displayName ? (
-                <Button onClick={handleSignOut} color="inherit">
-                  Logout
-                </Button>
-              ) : (
-                <Link to="/signIn">Sign in</Link>
-              )}
-            </Stack>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </Box>
+    <AppBar
+      component="nav"
+      position="fixed"
+      sx={{
+        backgroundColor: red["A400"],
+      }}
+    >
+      <Container maxWidth="md">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Stack direction={"row"} sx={{ flexGrow: 1 }} spacing={4}>
+            <Typography variant="h6" component="div">
+              <Link to="/">Home</Link>
+            </Typography>
+            <Typography variant="h6" component="div">
+              <Link to="/About">About</Link>
+            </Typography>
+            <Typography variant="h6" component="div">
+              <Link to="/MyRecipes">My recipes</Link>
+            </Typography>
+          </Stack>
+          <Stack>
+            {user?.displayName ? (
+              <Button onClick={handleSignOut} color="inherit">
+                Logout
+              </Button>
+            ) : (
+              <Link to="/signIn">Sign in</Link>
+            )}
+          </Stack>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
 // export default Navbar;

@@ -12,10 +12,11 @@ const MyRecipes = () => {
     <Stack
       sx={{
         background: `url(${myRecipeImage}) no-repeat center center fixed `,
-        minHeight: "calc(100vh - 68px)",
+        backgroundSize: "cover",
+        minHeight: "calc(100vh - 64px)",
       }}
     >
-      <Container>
+      <Container maxWidth="md">
         <Typography
           sx={{
             fontFamily: "EB Garamond",
@@ -24,7 +25,6 @@ const MyRecipes = () => {
           color="secondary"
           align="center"
         >
-          My recipe dashboard
           <p>Welcome, {user?.displayName}</p>
         </Typography>
 
