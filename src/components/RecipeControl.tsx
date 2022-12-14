@@ -14,6 +14,7 @@ import {
   deleteDoc,
   query,
   where,
+  orderBy,
 } from "firebase/firestore";
 import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -32,7 +33,11 @@ const RecipeControl = () => {
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
-      query(collection(db, "recipes"), where("author", "==", user.uid)),
+      query(
+        collection(db, "recipes"),
+        where("author", "==", user.uid),
+        orderBy("name")
+      ),
       (collectionSnapshot) => {
         const recipes: IRecipe[] = [];
         collectionSnapshot.forEach((doc) => {
