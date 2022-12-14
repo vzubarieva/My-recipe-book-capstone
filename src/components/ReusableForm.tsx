@@ -56,10 +56,6 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
     setSelectedFiles(event?.target?.files?.[0]);
   };
 
-  const onUpload = () => {
-    console.log(selectedFiles);
-  };
-
   const onClear = () => {
     setSelectedFiles(undefined);
   };
@@ -126,14 +122,6 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
                   <span>Clear</span>
                 </Button>
               )}
-              <Button
-                color="primary"
-                disabled={!selectedFiles}
-                style={{ textTransform: "none" }}
-                onClick={onUpload}
-              >
-                Upload
-              </Button>
             </>
             <TextField
               sx={{

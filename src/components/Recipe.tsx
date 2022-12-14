@@ -76,7 +76,7 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
         component="img"
         height="194"
         image={recipe.coverUrl}
-        alt="Paella dish"
+        alt="photo of dish"
       />
       <CardContent>
         <Typography

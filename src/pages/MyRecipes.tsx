@@ -16,7 +16,7 @@ const MyRecipes = () => {
         minHeight: "calc(100vh - 64px)",
       }}
     >
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Typography
           sx={{
             fontFamily: "EB Garamond",
