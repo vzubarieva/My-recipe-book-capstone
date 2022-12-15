@@ -14,6 +14,7 @@ import { red } from "@mui/material/colors";
 import React from "react";
 import { IRecipe } from "../models/Recipe";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import MDEditor from "@uiw/react-md-editor";
 
 interface IRecipeDetailProps {
   onClickingEdit: (id: string) => void;
@@ -46,18 +47,36 @@ function RecipeDetail(props: IRecipeDetailProps) {
         alt="Paella dish"
       /> */}
         <CardContent>
-          <Typography variant="h5" color="text.primary">
-            {recipe.ingredients}
-          </Typography>
+          <Stack component={"ul"}>
+            {recipe.ingredients
+              .split("\n")
+              .filter(Boolean)
+              .map((x) => (
+                <Typography
+                  component={"li"}
+                  key={x}
+                  variant="h5"
+                  color="text.primary"
+                >
+                  {x}
+                </Typography>
+              ))}
+          </Stack>
         </CardContent>
 
         <CardContent>
           <Typography paragraph variant="h4">
             Method:
           </Typography>
-          <Typography paragraph variant="h5">
-            {recipe.directions}
-          </Typography>
+          <MDEditor.Markdown
+            source={recipe.directions}
+            style={{
+              // whiteSpace: "pre-wrap",
+              backgroundColor: "inherit",
+              fontSize: "24px",
+            }}
+          />
+
           <Typography paragraph variant="h4">
             Preparation time:
           </Typography>

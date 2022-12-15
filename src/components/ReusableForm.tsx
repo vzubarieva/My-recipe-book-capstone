@@ -5,8 +5,9 @@ import {
   Card,
   CardHeader,
   CardContent,
+  FormLabel,
 } from "@mui/material";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { IRecipe, IRecipeForm } from "../models/Recipe";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Button from "@mui/material/Button";
@@ -14,6 +15,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Input from "@mui/material/Input";
 import { Box } from "@mui/system";
+import MDEditor from "@uiw/react-md-editor";
 
 const AcceptedFileType = {
   Text: ".txt",
@@ -32,19 +34,27 @@ interface IRecipeDetailProps {
   buttonText: string;
 }
 function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
+  const [directions, setDirections] = useState<string>(recipe?.directions);
+
+  const onDirectionsChange = (value) => {
+    setDirections(value);
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = event.target as HTMLFormElement;
     onSubmit({
       name: formData.recipeName.value,
       ingredients: formData.ingredients.value,
-      directions: formData.directions.value,
+      directions,
       prepTime: formData.prepTime.value,
       cookingTime: formData.cookingTime.value,
       comments: formData.comments.value,
       id: "",
       author: "",
       coverPhoto: selectedFiles,
+      coverImageId: recipe?.coverImageId || "",
+      coverUrl: recipe?.coverUrl || "",
     });
   };
 
@@ -139,7 +149,9 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               rows={3}
               defaultValue={recipe?.ingredients}
             />
-            <TextField
+            <FormLabel>Directions:</FormLabel>
+            <MDEditor value={directions} onChange={onDirectionsChange} />
+            {/* <TextField
               sx={{
                 marginTop: 3,
                 marginBottom: 3,
@@ -154,7 +166,7 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               multiline
               rows={3}
               defaultValue={recipe?.directions}
-            />
+            /> */}
             <TextField
               sx={{ m: 1, width: "25ch" }}
               InputProps={{

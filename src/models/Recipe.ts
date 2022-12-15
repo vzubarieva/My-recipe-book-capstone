@@ -7,8 +7,8 @@ export interface IRecipe {
   prepTime: number;
   cookingTime: number;
   comments: string;
-  coverImageId?: string;
-  coverUrl?: string;
+  coverImageId: string;
+  coverUrl: string;
 }
 
 export interface IRecipeForm extends IRecipe {
