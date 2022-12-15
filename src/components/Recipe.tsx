@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -50,7 +51,7 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red["A400"] }} aria-label="recipe">
-            VZ
+            <MenuBookIcon />
           </Avatar>
         }
         // action={
