@@ -3,7 +3,7 @@ import { Container } from "@mui/system";
 import React from "react";
 import RecipeControl from "../components/RecipeControl";
 import { UserAuth } from "../context/AuthContext";
-import myRecipeImage from "./../img/strawberries.jpg";
+import myRecipeImage from "./../img/cropped.jpg";
 
 const MyRecipes = () => {
   const { user } = UserAuth();

@@ -9,7 +9,9 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { red } from "@mui/material/colors";
-import { Container, Stack } from "@mui/material";
+import { alpha, Container, Stack, styled } from "@mui/material";
+// import InputBase from "@mui/material/InputBase";
+// import SearchIcon from "@mui/icons-material/Search";
 
 // const Navbar = () => {
 
@@ -34,6 +36,49 @@ export default function ButtonAppBar() {
       console.log(error);
     }
   };
+
+  // const Search = styled("div")(({ theme }) => ({
+  //   position: "relative",
+  //   borderRadius: theme.shape.borderRadius,
+  //   backgroundColor: alpha(theme.palette.common.white, 0.15),
+  //   "&:hover": {
+  //     backgroundColor: alpha(theme.palette.common.white, 0.25),
+  //   },
+  //   marginLeft: 0,
+  //   width: "100%",
+  //   [theme.breakpoints.up("sm")]: {
+  //     marginLeft: theme.spacing(1),
+  //     width: "auto",
+  //   },
+  // }));
+
+  // const SearchIconWrapper = styled("div")(({ theme }) => ({
+  //   padding: theme.spacing(0, 2),
+  //   height: "100%",
+  //   position: "absolute",
+  //   pointerEvents: "none",
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // }));
+
+  // const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  //   color: "inherit",
+  //   "& .MuiInputBase-input": {
+  //     padding: theme.spacing(1, 1, 1, 0),
+  //     // vertical padding + font size from searchIcon
+  //     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+  //     transition: theme.transitions.create("width"),
+  //     width: "100%",
+  //     [theme.breakpoints.up("sm")]: {
+  //       width: "12ch",
+  //       "&:focus": {
+  //         width: "20ch",
+  //       },
+  //     },
+  //   },
+  // }));
+
   return (
     <AppBar
       component="nav"
@@ -42,7 +87,7 @@ export default function ButtonAppBar() {
         backgroundColor: red["A400"],
       }}
     >
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Toolbar>
           <IconButton
             size="large"
@@ -64,6 +109,17 @@ export default function ButtonAppBar() {
               <Link to="/MyRecipes">My recipes</Link>
             </Typography>
           </Stack>
+          {/* <Stack>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+          </Stack> */}
           <Stack>
             {user?.displayName ? (
               <Button onClick={handleSignOut} color="inherit">

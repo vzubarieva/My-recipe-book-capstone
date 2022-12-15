@@ -8,6 +8,7 @@ import {
   IconButton,
   Collapse,
   Button,
+  Stack,
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 import React from "react";
@@ -70,40 +71,27 @@ function RecipeDetail(props: IRecipeDetailProps) {
             {recipe.cookingTime} min
           </Typography>
           <Typography variant="h5">{recipe.comments}</Typography>
-          <Button
-            onClick={() => onClickingEdit(recipe.id)}
-            sx={{
-              marginTop: 3,
-              marginBottom: 3,
-              marginRight: 3,
-              marginLeft: 1,
-              display: "flex",
-            }}
-            type="submit"
-            color="secondary"
-            variant="contained"
-            // endIcon={<ArrowForwardIosIcon />}
-          >
-            Update recipe
-          </Button>
+          <Stack direction={"row"} spacing={2}>
+            <Button
+              onClick={() => onClickingEdit(recipe.id)}
+              type="submit"
+              color="secondary"
+              variant="contained"
+              // endIcon={<ArrowForwardIosIcon />}
+            >
+              Update recipe
+            </Button>
 
-          <Button
-            onClick={() => onClickingDelete(recipe.id)}
-            sx={{
-              marginTop: 3,
-              marginBottom: 3,
-              marginRight: 3,
-              marginLeft: 1,
-
-              display: "flex",
-            }}
-            type="submit"
-            color="secondary"
-            variant="contained"
-            // endIcon={<ArrowForwardIosIcon />}
-          >
-            Delete recipe
-          </Button>
+            <Button
+              onClick={() => onClickingDelete(recipe.id)}
+              type="submit"
+              color="secondary"
+              variant="contained"
+              // endIcon={<ArrowForwardIosIcon />}
+            >
+              Delete recipe
+            </Button>
+          </Stack>
         </CardContent>
       </Card>
     </React.Fragment>
