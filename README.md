@@ -10,16 +10,16 @@ Recipe book web application where user can store their recipes,add photos of dis
 
 Web application can help to organize recipes in one place. User can make their own recipe book by signing in with google account. User can add recipes, ingredients, add photos, cooking and preparation time. Also you can search in your recipes and fast find what you need.
 
-## Straeching goals
+![project-screenshot](src/img/diagram1.png)
+
+website url https://my-recipe-book-e2c62.web.app/
+
+## Stretching goals
 
 - Set rating to each recipe
 - Sort recipes by the categories
 - Create interactive shoppings lists from your planned meals
 - Make it as a mobile app
-
-![project-screenshot](src/img/diagram1.png)
-
-website url https://my-recipe-book-e2c62.web.app/
 
 ## Technologies Used
 
