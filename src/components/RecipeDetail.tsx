@@ -90,6 +90,7 @@ function RecipeDetail(props: IRecipeDetailProps) {
             {recipe.cookingTime} min
           </Typography>
           <Typography variant="h5">{recipe.comments}</Typography>
+
           <Stack direction={"row"} spacing={2}>
             <Button
               onClick={() => onClickingEdit(recipe.id)}
