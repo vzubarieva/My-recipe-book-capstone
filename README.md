@@ -2,9 +2,20 @@
 
 ## Capstone project
 
+Recipe book web application where user can store their recipes,add photos of dishes, add notes.
+
 #### By: Viktoria Zubarieva
 
 #### Description
+
+Web application can help to organize recipes in one place. User can make their own recipe book by signing in with google account. User can add recipes, ingredients, add photos, cooking and preparation time. Also you can search in your recipes and fast find what you need.
+
+## Straeching goals
+
+- Set rating to each recipe
+- Sort recipes by the categories
+- Create interactive shoppings lists from your planned meals
+- Make it as a mobile app
 
 ![project-screenshot](src/img/diagram1.png)
 
@@ -13,15 +24,20 @@ website url https://my-recipe-book-e2c62.web.app/
 ## Technologies Used
 
 - React
-- JavaScript
 - TypeScript
--
+- Authorization with Google account
+- Firebase
+- Firestore Database
+- Storage
+- Material UI
+- React-Md-Editor
+- Hosting from Firebase
 
 ## Setup/Installation Requirements
 
 - _Clone repository from GitHub_
 - _Open your terminal and run the command $ git clone https://github.com/vzubarieva/My-recipe-book-capstone_
-- Navigate to
+- Navigate to "My-RECIPE-BOOK-CAPSTONE"
 - Open in code editor (VS Code)
 - Install dependencies: $ npm install
 - Run Program $ npm run start ( It should open the server http://localhost:3000/ )
@@ -29,7 +45,7 @@ website url https://my-recipe-book-e2c62.web.app/
 
 ## Known Bugs
 
--
+- "Like" function still in process
 
 ## License
 
