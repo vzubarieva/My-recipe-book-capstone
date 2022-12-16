@@ -45,7 +45,7 @@ website url https://my-recipe-book-e2c62.web.app/
 
 ## Known Bugs
 
-- "Like" function still in process
+- "Like" functionality still in process
 
 ## License
 

@@ -1,7 +1,6 @@
 import React from "react";
 import Recipe from "./Recipe";
 import { IRecipe } from "../models/Recipe";
-// import RecipeCard from "./RecipeCard";
 import Grid from "@mui/material/Unstable_Grid2";
 
 interface IRecipeListProps {

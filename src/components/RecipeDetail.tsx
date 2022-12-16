@@ -1,19 +1,13 @@
 import {
   Card,
   CardHeader,
-  Avatar,
   Typography,
   CardContent,
-  CardActions,
-  IconButton,
-  Collapse,
   Button,
   Stack,
 } from "@mui/material";
-import { red } from "@mui/material/colors";
 import React from "react";
 import { IRecipe } from "../models/Recipe";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import MDEditor from "@uiw/react-md-editor";
 
 interface IRecipeDetailProps {
@@ -37,8 +31,6 @@ function RecipeDetail(props: IRecipeDetailProps) {
               {recipe.name}
             </Typography>
           }
-
-          // subheader="September 14, 2016"
         />
         {/* <CardMedia
         component="img"
@@ -97,7 +89,6 @@ function RecipeDetail(props: IRecipeDetailProps) {
               type="submit"
               color="secondary"
               variant="contained"
-              // endIcon={<ArrowForwardIosIcon />}
             >
               Update recipe
             </Button>
@@ -107,7 +98,6 @@ function RecipeDetail(props: IRecipeDetailProps) {
               type="submit"
               color="secondary"
               variant="contained"
-              // endIcon={<ArrowForwardIosIcon />}
             >
               Delete recipe
             </Button>

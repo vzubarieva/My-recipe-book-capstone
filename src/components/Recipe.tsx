@@ -54,11 +54,6 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
             <MenuBookIcon />
           </Avatar>
         }
-        // action={
-        //   <IconButton aria-label="settings">
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
         title={
           <Typography
             variant="h4"
@@ -71,7 +66,6 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
             {recipe.name}
           </Typography>
         }
-        // subheader="September 14, 2016"
       />
       <CardMedia
         component="img"
@@ -81,7 +75,6 @@ function Recipe({ recipe, whenRecipeClicked }: IRecipeProps) {
       />
       <CardContent>
         <Typography
-          // variant="h6"
           variant="body2"
           color="text.primary"
           sx={{ fontFamily: "Roboto", maxHeight: 300 }}

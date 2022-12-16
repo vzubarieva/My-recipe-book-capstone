@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { auth } from "../helpers/firebase";
 import { UserAuth } from "../context/AuthContext";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+
 import GoogleButton from "react-google-button";
 import { useNavigate } from "react-router-dom";
 import { Box, Stack } from "@mui/material";

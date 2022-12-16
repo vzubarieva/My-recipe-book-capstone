@@ -1,7 +1,5 @@
 import {
   TextField,
-  textFieldClasses,
-  Typography,
   Card,
   CardHeader,
   CardContent,
@@ -12,9 +10,7 @@ import { IRecipe, IRecipeForm } from "../models/Recipe";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Button from "@mui/material/Button";
 import InputAdornment from "@mui/material/InputAdornment";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import Input from "@mui/material/Input";
-import { Box } from "@mui/system";
+
 import MDEditor from "@uiw/react-md-editor";
 
 const AcceptedFileType = {
@@ -151,22 +147,7 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
             />
             <FormLabel>Directions:</FormLabel>
             <MDEditor value={directions} onChange={onDirectionsChange} />
-            {/* <TextField
-              sx={{
-                marginTop: 3,
-                marginBottom: 3,
-                display: "block",
-              }}
-              label="Directions"
-              name="directions"
-              variant="outlined"
-              color="secondary"
-              fullWidth
-              required
-              multiline
-              rows={3}
-              defaultValue={recipe?.directions}
-            /> */}
+
             <TextField
               sx={{ m: 1, width: "25ch" }}
               InputProps={{
@@ -180,24 +161,7 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               id="outlined-start-adornment"
               defaultValue={recipe?.prepTime}
             />
-            {/* <TextField
-          inputProps={{
-            inputMode: "numeric",
-            pattern: "[0-9]",
-            endAdornment: <InputAdornment position="end">min</InputAdornment>,
-          }}
-          name="prepTime"
-          label="Preparation time"
-          type={"number"}
-          
-        /> */}
 
-            {/* <input
-          type="number"
-          name="prepTime"
-          placeholder="Preparation time"
-          defaultValue={recipe?.prepTime}
-        /> */}
             <TextField
               InputProps={{
                 startAdornment: (
@@ -211,7 +175,6 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               sx={{ m: 1, width: "25ch" }}
               defaultValue={recipe?.cookingTime}
             />
-            {/* <input type="number" name="cookingTime" placeholder="Cooking time" /> */}
             <TextField
               sx={{
                 marginTop: 3,
@@ -225,7 +188,6 @@ function ReusableForm({ buttonText, onSubmit, recipe }: IRecipeDetailProps) {
               fullWidth
               defaultValue={recipe?.comments}
             />
-            {/* </form> */}
 
             <Button
               sx={{

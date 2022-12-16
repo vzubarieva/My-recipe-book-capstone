@@ -25,7 +25,6 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import { Stack } from "@mui/material";
-import Recipe from "./Recipe";
 
 const RecipeControl = () => {
   const { user } = UserAuth();
@@ -166,8 +165,7 @@ const RecipeControl = () => {
       author: user.uid,
       coverImageId: imageId,
       coverUrl,
-    }); // const newMainRecipeList = mainRecipeList.concat(newRecipe);
-    // setMainRecipeList(newMainRecipeList);
+    });
     setFormVisibleOnPage(false);
   };
 
@@ -287,7 +285,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",

@@ -1,6 +1,6 @@
 import React from "react";
 import ReusableForm from "./ReusableForm";
-import { IRecipe, IRecipeForm } from "../models/Recipe";
+import { IRecipeForm } from "../models/Recipe";
 
 interface INewRecipeFormProps {
   onNewRecipeCreation: (recipe: IRecipeForm) => void;

@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "./Header";
 import Navbar from "./Navbar";
 import Protected from "./Protected";
 import RecipeControl from "./RecipeControl";
@@ -12,7 +11,7 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import Home from "../pages/Home";
-import { Box, Container, CssBaseline } from "@mui/material";
+import { Box, CssBaseline } from "@mui/material";
 import About from "../pages/About";
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
       <CssBaseline />
       <Router>
         <Navbar />
-        {/* <Header /> */}
+
         <Box
           sx={{
             paddingTop: "64px",
