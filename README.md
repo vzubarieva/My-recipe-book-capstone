@@ -14,6 +14,10 @@ Web application can help to organize recipes in one place. User can make their o
 
 website url https://my-recipe-book-e2c62.web.app/
 
+![project-screenshot](src/img/Screenshot1.png)
+![project-screenshot](src/img/Screenshot2.png)
+![project-screenshot](src/img/Screenshot3.png)
+
 ## Stretching goals
 
 - Set rating to each recipe
@@ -25,13 +29,11 @@ website url https://my-recipe-book-e2c62.web.app/
 
 - React
 - TypeScript
-- Authorization with Google account
-- Firebase
+- Firebase Authentication
 - Firestore Database
-- Storage
+- Firebase Storage
 - Material UI
-- React-Md-Editor
-- Hosting from Firebase
+- Firebase Hosting
 
 ## Setup/Installation Requirements
 
@@ -41,11 +43,10 @@ website url https://my-recipe-book-e2c62.web.app/
 - Open in code editor (VS Code)
 - Install dependencies: $ npm install
 - Run Program $ npm run start ( It should open the server http://localhost:3000/ )
--
 
 ## Known Bugs
 
-- "Like" functionality still in process
+- "Like" button still in progress
 
 ## License
 
